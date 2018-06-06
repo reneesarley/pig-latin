@@ -17,7 +17,13 @@ var pigLatinGen = function(pigLatinConversion){
           words[word] = words[word] + "ay";
           letter = letters.length;
           vowel = vowels.length;
-      } else if (letters[letter] === vowels[vowel] && letter === 0){
+      } else if(letters[letter] === vowels[vowel] && letters[letter] === "y"){
+          letters.splice(0, 1);
+          letters.push("yay");
+          words[word] = letters.join("");
+          letter = letters.length;
+          vowel = vowels.length;
+      }  else if (letters[letter] === vowels[vowel] && letter === 0){
             words[word] = words[word] + "way";
             letter = letters.length;
             vowel = vowels.length;
