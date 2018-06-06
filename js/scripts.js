@@ -6,36 +6,36 @@ var outPut = function(translatedPig){
 
 var pigLatinGen = function(pigLatinConversion){
   var words = pigLatinConversion.split(" ");
-  var vowels =["a", "e", "i", "o", "u", "y"];
+  var vowels =["e", "a", "i", "o", "u", "y"];
+
 
   for(word = 0; word < words.length; word ++){
-    for(vowel = 0; vowel < vowels.length; vowel ++){
-      if(words[word] === vowels[vowel]){
-      words[word] = words[word] + "ay";
-      vowel = vowels.length;
-      } else if(words[word].length > 1){
-        console.log(words[word]);
-        var letters = (words[word]).split("");
-        for(letter = 0; letter < letters.length; letter ++){
-          console.log(letters[letter]);
-          for(vowel = 0; vowel < vowels.length; vowel ++){
-            if(letters[letter] !== vowels[vowel]){
-              letters.push(letters[letter]);
-              words[word] = toString(letters[letter]);
-              console.log("this is letters " + letters);
-              console.log("this is words " + words[word]);
-              letter = letters.length;
+    var letters = (words[word]).split("");
+    for (letter = 0; letter < letters.length; letter ++){
+      for(vowel = 0; vowel < vowels.length; vowel ++){
+        if(letters[letter] === vowels[vowel] && 1 === letters.length){
+          words[word] = words[word] + "ay";
+          letter = letters.length;
+          vowel = vowels.length;
+      } else if (letters[letter] === vowels[vowel] && letter === 0){
+            words[word] = words[word] + "way";
+            letter = letters.length;
+            vowel = vowels.length;
+      } else if (letters[letter] === vowels[vowel]) {
+            for(moveCon = 0; moveCon < letter; moveCon ++){
+              letters.push(letters[moveCon]);
+            };
+        letters.splice(0, letter);
+        letters.push("ay");
+        words[word] = letters.join("");
+        letter = letters.length;
+      }
+      // else{
+      //     console.log("final else");
+      //   }
 
-            } else{
-              letter = letters.length;
-            }
-          }
-        }
-        words[word] = words[word] + "way";
-        vowel = vowels.length;
-        console.log("made it through:" + words[word]);
-        console.log("anything with two or more");
-        }
+      }
+
     }
   }
   outPut(words);
@@ -55,3 +55,30 @@ $(function(){
   });
 
 });
+
+
+// var letters = (words[word]).split("");
+  // for(vowel = 0; vowel < vowels.length; vowel ++){
+  //   if(letters[0] === "y" || letters[0] !== vowels[vowel]) {
+  //     letters.push(letters[0]);
+  //     letters.splice(0, 1);
+  //     letters.push("ay");
+  //     words[word] = letters.join("");
+  //     letter = letters.length;
+  //     console.log("I have changed the word to " + words[word]);
+  //     // return words[word];
+  //   } else {
+  //     // console.log("first letter is equal to" + vowels[vowel]);
+  //     // console.log("this is letters " + letters);
+  //     letters.push("way");
+  //     words[word] = letters.join("");
+  //     letter = letters.length;
+  //     // console.log("this is the word now " + (words[word]));
+  //     // vowel = vowels.length;
+  //   }
+  // }
+// }
+// words[word] = words[word] + "way";
+// vowel = vowels.length;
+// console.log("made it through:" + words[word]);
+// console.log("anything with two or more");
