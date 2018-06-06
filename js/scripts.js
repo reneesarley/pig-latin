@@ -29,6 +29,17 @@ var pigLatinGen = function(pigLatinConversion){
         letters.push("ay");
         words[word] = letters.join("");
         letter = letters.length;
+      } else if (letters[letter] === "q"){
+        for(moveCon = 0; moveCon < (letter + 2); moveCon ++){
+          letters.push(letters[moveCon]);
+        };
+        console.log("q was found");
+        letters.splice(0, (letter + 2));
+        letters.push("ay");
+        console.log(letters);
+        words[word] = letters.join("");
+        letter = letters.length;
+
       }
       // else{
       //     console.log("final else");
